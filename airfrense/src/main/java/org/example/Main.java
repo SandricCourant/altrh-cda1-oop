@@ -1,19 +1,25 @@
 package org.example;
 
 import org.example.controllers.ReservationController;
-import org.example.providers.JetTypeProvider;
 import org.example.providers.ReservationProvider;
+import org.example.providers.VehiculeCategoryProvider;
+import org.example.providers.VehiculeSubCategoryProvider;
 import org.example.services.ReservationService;
+import org.example.services.VehiculeService;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        JetTypeProvider maxime = new JetTypeProvider();
         ReservationProvider sophie = new ReservationProvider();
-        ReservationService nicolas = new ReservationService(maxime, sophie);
-        ReservationController bertrand = new ReservationController(nicolas);
+        ReservationService nicolas = new ReservationService(sophie);
+
+        VehiculeCategoryProvider maxime = new VehiculeCategoryProvider();
+        VehiculeSubCategoryProvider theo = new VehiculeSubCategoryProvider();
+        VehiculeService anna = new VehiculeService(maxime, theo);
+
+        ReservationController bertrand = new ReservationController(nicolas, anna);
 
         // --------------------------------------------------------------------------
 
@@ -24,10 +30,18 @@ public class Main {
             System.out.println("Que souhaitez-vous faire ? ('r' pour réserver)");
             String saisie = scanner.nextLine();
             if (saisie.equals("r")) {
-                System.out.println(bertrand.getJetTypes());
-                System.out.println("Choisir le type de jet : ");
+
+                System.out.println(bertrand.listVehiculeCategories());
+                System.out.println("Choisir la categorie de véhicule : ");
                 saisie = scanner.nextLine();
-                int jetTypeIndex = Integer.parseInt(saisie);
+                int vehiculeCategoryIndex = Integer.parseInt(saisie);
+
+
+                System.out.println(bertrand.listVehiculeSubCategories(vehiculeCategoryIndex));
+                System.out.println("Choisir la sous-categorie de ce véhicule : ");
+                saisie = scanner.nextLine();
+                int vehiculeSubCategoryIndex = Integer.parseInt(saisie);
+
                 System.out.println("Nom du client : ");
                 String fullname = scanner.nextLine();
                 System.out.println("Ville de départ : ");
@@ -39,8 +53,8 @@ public class Main {
                 System.out.println("Date et heure de fin de réservation : ");
                 String endAt = scanner.nextLine();
 
-                int reference = bertrand.book(jetTypeIndex, fullname, departure, arrival, startAt, endAt);
-                System.out.println("Réservation faite, avec référence : " + reference);
+                String details = bertrand.book(vehiculeCategoryIndex, vehiculeSubCategoryIndex, fullname, departure, arrival, startAt, endAt);
+                System.out.println("Réservation faite : " + details);
             } else {
                 System.out.println("Quelle référence doit-on annuler ? ");
                 saisie = scanner.nextLine();

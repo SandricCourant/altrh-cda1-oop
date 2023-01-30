@@ -5,7 +5,7 @@ public class Reservation extends ReservationRequest {
     private int reference;
 
     public Reservation(ReservationRequest request, int reference) {
-        super(request.jetType, request.fullname, request.departure, request.arrival, request.startAt, request.endAt);
+        super(request.vehiculeCategory, request.vehiculeSubCategory, request.fullname, request.departure, request.arrival, request.startAt, request.endAt);
         this.reference = reference;
     }
 

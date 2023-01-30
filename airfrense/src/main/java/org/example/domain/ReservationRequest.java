@@ -2,15 +2,17 @@ package org.example.domain;
 
 public class ReservationRequest {
 
-    protected JetType jetType;
+    protected VehiculeCategory vehiculeCategory;
+    protected VehiculeSubCategory vehiculeSubCategory;
     protected String fullname;
     protected String departure;
     protected String arrival;
     protected String startAt;
     protected String endAt;
 
-    public ReservationRequest(JetType jetType, String fullname, String departure, String arrival, String startAt, String endAt) {
-        this.jetType = jetType;
+    public ReservationRequest(VehiculeCategory vehiculeCategory, VehiculeSubCategory vehiculeSubCategory, String fullname, String departure, String arrival, String startAt, String endAt) {
+        this.vehiculeCategory = vehiculeCategory;
+        this.vehiculeSubCategory = vehiculeSubCategory;
         this.fullname = fullname;
         this.departure = departure;
         this.arrival = arrival;
@@ -25,12 +27,12 @@ public class ReservationRequest {
     public void setEndAt(String endAt) {
         this.endAt = endAt;
     }
-    public JetType getJetType() {
-        return jetType;
+    public VehiculeCategory getVehiculeCategory() {
+        return vehiculeCategory;
     }
 
-    public void setJetType(JetType jetType) {
-        this.jetType = jetType;
+    public void setVehiculeCategory(VehiculeCategory vehiculeCategory) {
+        this.vehiculeCategory = vehiculeCategory;
     }
 
     public String getFullname() {
@@ -64,4 +66,13 @@ public class ReservationRequest {
     public void setStartAt(String startAt) {
         this.startAt = startAt;
     }
+
+    public VehiculeSubCategory getVehiculeSubCategory() {
+        return vehiculeSubCategory;
+    }
+
+    public void setVehiculeSubCategory(VehiculeSubCategory vehiculeSubCategory) {
+        this.vehiculeSubCategory = vehiculeSubCategory;
+    }
 }
+
