@@ -35,4 +35,12 @@ public class VehiculeService {
         return vehiculeSubCategoryProvider.find(vehiculeCategory, index);
     }
 
+    public VehiculeCategory createCategory(String name) {
+        return vehiculeCategoryProvider.create(name);
+    }
+
+    public VehiculeSubCategory createSubCategory(VehiculeCategory category, String name) {
+        return vehiculeSubCategoryProvider.create(category, name);
+    }
+
 }

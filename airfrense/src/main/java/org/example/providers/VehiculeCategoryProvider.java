@@ -24,5 +24,11 @@ public class VehiculeCategoryProvider {
         return data.get(index);
     }
 
+    public VehiculeCategory create(String name) {
+        VehiculeCategory category = new VehiculeCategory(name);
+        data.add(category);
+        return category;
+    }
+
 }
 

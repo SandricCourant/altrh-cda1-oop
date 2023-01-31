@@ -16,4 +16,9 @@ public class Reservation extends ReservationRequest {
     public void setReference(int reference) {
         this.reference = reference;
     }
+
+    @Override
+    public String toString() {
+        return "R" + reference + ", client: " + fullname + ", " + vehiculeSubCategory.getName();
+    }
 }

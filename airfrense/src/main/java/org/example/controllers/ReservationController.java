@@ -60,5 +60,36 @@ public class ReservationController {
         return results;
     }
 
+    public List<String> list(int vehiculeCategoryIndex) {
+        List<String> results = new ArrayList<>();
+        VehiculeCategory vehiculeCategory = vehiculeService.findCategory(vehiculeCategoryIndex);
+        for (Reservation r : reservationService.list(vehiculeCategory)) {
+            results.add(r.toString());
+        }
 
+        return results;
+    }
+
+    public String findByReference(int reference) {
+        Reservation reservation = reservationService.findByReference(reference);
+        if (reservation == null) {
+            return "Non trouvée";
+        }
+
+        return "R" + reservation.getReference() + ", client: " +
+                reservation.getFullname() + ", " + reservation.getVehiculeCategory().getName() +
+                ", " + reservation.getVehiculeSubCategory().getName() +
+                ", debut: " + reservation.getStartAt() +
+                ", fin: " + reservation.getEndAt();
+    }
+
+    public boolean changeReservationClient(int reference, String client) {
+        Reservation r = reservationService.findByReference(reference);
+        if (r == null) {
+            return false;
+        }
+
+        reservationService.changeReservationClien(r, client);
+        return true;
+    }
 }

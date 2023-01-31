@@ -2,7 +2,10 @@ package org.example.services;
 
 import org.example.domain.Reservation;
 import org.example.domain.ReservationRequest;
+import org.example.domain.VehiculeCategory;
 import org.example.providers.ReservationProvider;
+
+import java.util.List;
 
 public class ReservationService {
 
@@ -22,6 +25,19 @@ public class ReservationService {
 
     public void cancel(int reference) {
         reservationProvider.delete(reference);
+    }
+
+    public List<Reservation> list(VehiculeCategory vehiculeCategory) {
+        return reservationProvider.findByCategory(vehiculeCategory);
+    }
+
+    public Reservation findByReference(int reference) {
+        return reservationProvider.findByReference(reference);
+    }
+
+    public Reservation changeReservationClien(Reservation a, String client) {
+        a.setFullname(client);
+        return reservationProvider.update(a);
     }
 
 }

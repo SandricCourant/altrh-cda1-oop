@@ -48,5 +48,10 @@ public class VehiculeSubCategoryProvider {
         return findBy(category).get(index);
     }
 
+    public VehiculeSubCategory create(VehiculeCategory category, String name) {
+        VehiculeSubCategory subCategory = new VehiculeSubCategory(category, name);
+        data.add(subCategory);
+        return subCategory;
+    }
 }
 
